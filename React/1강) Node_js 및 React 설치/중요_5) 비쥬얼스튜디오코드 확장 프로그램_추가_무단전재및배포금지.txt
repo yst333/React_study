@@ -1,0 +1,46 @@
+1. 한글 패치
+   1) CTRL + SHIFT + X - 검색 : korean - Korean Language Pack... install : 프로그램 재실행
+   2) 한글 패치 적용 확인
+
+2. 테마 변경 : 파일 - 기본 설정 - 색 테마 : 원하는 테마 변경 적용
+
+3. Material Theme : 다양한 색상의 테마 선택 (눈에 편한 테마 추천함)
+
+4. CTRL+S 저장 후 바로 브라우저 실행 확인 확장 프로그램 : Live Server
+  1) CTRL + SHIFT + X - 검색 : live - Live Server install : 프로그램 재실행
+  2) Live Server 설치 후 - 파일 - 기본 설정 - 바로가기 키 - live 검색 - 키바인딩 확인(그대로 사용하거나 키바인딩 수정해서 사용하면 됨)
+    => Live Server 설치후에 "go live" 버튼이 안 나타날경우, 재부팅하고 Disable했다가 Enable 해보시기 바랍니다.
+
+5. VisualStudioCode 사이드 바에 있는 [확장 기능] 버튼 클릭 - 검색 창에 'open-in-browser' (제작자 이름 : coderfee) 입력 검색!
+
+   - 설치 진행 - [다시 로드] 클릭 - Ctrl + Alt + O 단축키를 누르면 어떤 브라우저로 실행할 지를 물어봄. 여기서, 'chrome' 실행해 봄.
+
+============================================================================================
+
+6. 열에 가이드선 보이게 해주는 확장 프로그램 : Guides
+
+7. Prettier - Code formatter
+
+8. 괄호 색 구분하여 코드 가독성 높여주는 확장 프로그램 : Bracket Pair Colorizer
+
+9. 들여쓰기된 부분이 레인보우 칼라로 하이라이트 구분 표시 되어 가독성 높여주는 확장 프로그램 : Indent Rainbow
+
+10. HTML 편집할 경우, 앞에 태그를 바꾸면 뒤에 있는 태그도 자동으로 변환해 줌 : Auto Rename Tag
+
+============================================================================================
+
+(필수)
+11. HTML 문서에서 CTRL키를 누른 상태에서 CSS 요소를 클릭하면
+     HTML 문서에서 정의한 연관 CSS 파일로 찾아가서 선택해줌 : CSS Peek  (Ctrl + 왼클릭 활용)
+
+12. 앞서 HTML 문서에서 정의한 CSS 연관 CSS 파일에서 자동 완성 프로그램 : HTML to CSS autocompletion
+
+13. HTML 문서에서 CSS 자동 완성을 가능하게 해 줌 : HTML CSS Support (Ctrl + Spacebar 단축키 활용)
+
+
+
+
+
+
+
+

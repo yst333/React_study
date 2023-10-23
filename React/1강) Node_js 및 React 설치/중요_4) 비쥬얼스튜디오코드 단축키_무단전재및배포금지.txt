@@ -1,0 +1,94 @@
+1. 비주얼 스튜디오 코드 실습 파일의 저장 폴더 설정 : d:\src (뷰 바 - 탐색기 - d드라이브의 src 폴더로 지정함)
+
+2. CTRL + S : 파일 저장
+
+3. Emmet 기능 활용(Visual Studio Code 내장 프로그램)
+
+  1) CTRL + N(HTML 새 파일 저장) 후 HTML 양식 자동 완성 기능 활용
+
+  2) ! 클릭 후 TAB Key 클릭하면 자동으로 HTML5 기본 양식이 작성됨
+     
+  3) 태그 기재 후 TAB Key 클릭 (예시 : div TAB Key 클릭, div. TAB Key 클릭, div# TAB Key 클릭)
+ 
+  4) 부모 자식 노드 코딩 양식 작성 단축키 = div>ul>li 기재 후 TAB Key 클릭 (div 안에 ul 안에 li 만들기)
+
+  5) 형제 노드 코딩 양식 작성 단축키 = div>ul+ol 기재 후 TAB Key 클릭 (div 안에 형제 노드 구조로 ul과 ol 만들기)
+     
+  6) ul 안에 li 을 5개 만들고 싶다면 = ul>li*5 기재 후 TAB Key 클릭 (ul 안에 li를 5번 만들기)
+     
+  7) 태그 그룹화 ( ) : div>(header>ul>li*2>a)+footer>p 기재 후 Tab 키 클릭
+     
+  8) 태그 안에 텍스트 넣기(영문은 잘나오고 한글은 한글자씩 덜 나타남) : p{hello} 기재 후 Tab 키 클릭
+     
+  9) 자동으로 숫자 번호 할당해서 넣기 : p.class${item $}*5 기재 후 Tab 키 클릭 (또는 p#id${item $}*5 기재 후 Tab 키 클릭)
+
+  [중요 활용] div#skew Ctrl+Spacebar <div id="skew"></div>
+                div.skew Ctrl+Spacebar <div class="skew"></div>
+
+  10) 더미용 텍스트 넣기(1) : p>lorem 기재 후 Tab 키 클릭
+
+  11) 더미용 텍스트 넣기(2) : p>lorem4 기재 후 Tab 키 클릭(lorem4는 lorem에서 4개의 단어만 나타나게 함)
+
+2. 파일 - 기본 설정 - 바로가기 키 에서 단축키 설정 및 변경 가능함
+
+3. 컴맨드 파렛트 활성화 : CTRL + SHIFT + P
+
+4. 브라우저 실행 Preview 확장 프로그램 설치
+
+  1) 사이드 바 - 확장 기능 - 검색 : open-in-browser (제작자 이름 coderfee 확장 기능 선택하고 설치함 : 프로그램 재시작)
+  
+  2) 환경설정 - 바로가기 - open with 검색
+
+  3) CTRL + ALT + O - 상단에서 브라우저 선택 (CHROME 선택)
+
+5. 글자 크기 전체적으로 키움 : CTRL + +key, 글자 크기 전체적으로 작게 함 : CTRL + -key
+
+6. 창 분할 : 우측 상단 [|] 버튼 클릭 : 단축키 = CTRL + \
+
+7. 행 삭제 : CTRL + SHIFT + K
+
+8. 행 잘라내기(아무위치에서나 커서 있는 행 잘라내기) : CTRL + X
+
+9. 행 복사하기(아무위치에서나 커서 있는 행 잘라내기) : CTRL + C
+
+10. 행 붙여넣기 : CTRL + V
+
+11. 행 위치 변경
+
+  1) alt + Down 행을 아래로 이동
+
+  2) alt + Up 행을 위로 이동
+
+12. 행 삽입 줄바꿈
+
+  1) CTRL + ENTER(아무위치에서나 커서 있는 행에서 아래 줄로 가서) : 아랫줄에 행 삽입 줄바꿈
+
+  2) CTRL + SHIFT + ENTER(아무위치에서나 커서 있는 행에서 아래 줄로 가서) : 윗줄에 행 삽입 줄바꿈
+
+13. 커서 위치 기준 다중 행에 글자 입력
+
+  1) CTRL + ALT + DOWN : 커서 위치 기준 아래 다중 행에 글자 입력 추가
+ 
+  2) CTRL + ALT + UP : 커서 위치 기준 위 다중 행에 글자 입력 추가 
+
+14. 조건문이나 반복문 등 들여쓰기나 내어쓰기를 할 경우
+
+   1) 커서 위치에서 CTRL + ] 라인 들여쓰기 (Tab Key)
+
+   2) 커서 위치에서 CTRL + [ 라인 내어쓰기 (Shift + Tab Key)
+
+15. 주석 처리
+
+   1) 한줄 주석 처리(토글) = CTRL + /
+
+   2) 여러줄 주석 처리(커서 위치에서 여러줄 묶어서 처리 가능함) = SHIFT + ALT + A
+
+16. 자동으로 코드 정렬 : Ctrl + K + F
+
+17. 사이드 바 숨기기/나타내기 : Ctrl + B
+
+18. 선택 라인으로 이동하기 : Ctrl + G
+
+19. 콘솔창 나타내기 : Ctrl + `(숫자 1의 왼쪽에 있는 백틱키)
+
+20. 클래스/함수/변수 설명 보기 : Ctrl +K + I (Javadoc 같이 해당 함수의 설명을 보여줌)

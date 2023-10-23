@@ -1,0 +1,650 @@
+※ 윈도우즈키 + r키 → chrome → 개발자도구(F12)
+   → Console 탭 클릭하고 스크립트 소스 코딩 및 실행 확인 바랍니다.
+  (참고로, 윈도우즈키 + r키 → chrome → node 실행하고 스크립트 소스 코딩 및 실행 확인도 가능합니다)
+
+1. ES6에서 변수 선언하기
+
+1) 자바스크립트 변화를 주도하는 기관 = ECMA(European Computer Manufacturers Association)
+
+2) 자바스크립트 명세 = ES5 (var 한가지 방법 사용)
+
+3) 자바스크립트 명세 = ES6 (2015년 6월에 크게 개정되었으며,
+    ECMAScript6, ES6, ES2015, ES6Harmony 등 다양한 이름으로 불려지고 있습니다.
+   (자바스크립트 변수 선언 방법 세가지를 말하시오 : var, const, let 세가지 방법 사용 가능함)
+
+2. ES6에서 변수 선언하기
+2.1.1 const
+
+// ES5에서 var 변수 선언 시 변수값은 변경 가능하다
+
+    var pizza = true
+    console.log(pizza)
+    pizza = false
+    console.log(pizza)
+
+====================================================
+
+// Chrome - F5 새로고침
+
+// ES6부터 상수가 도입됐다
+
+    const pizza = true
+    pizza = false   // 에러남
+
+    console.log(pizza);  // true
+
+====================================================
+
+2.1.2 let
+
+// var 변수의 영역은 블록 안으로 제한되지 않는다
+
+    var topic = "자바스크립트"
+
+    if (topic) {                 // 중요 : Chrome Console 창에서 Shift Enter 클릭하면 줄바꿈 됩니다.
+      var topic = "리액트"
+      console.log('블록', topic)
+    }
+
+    console.log('글로벌', topic)
+
+====================================================
+
+    // ES6 let을 쓰면 구문적 변수 영역 규칙을 적용할 수 있다
+
+    var topic = "자바스크립트"
+
+    if (topic) {
+      let topic = "리액트"
+      console.log('블록', topic)
+    }
+
+    console.log('글로벌', topic)
+
+
+=====================================================
+
+    const lastName = "Jang"
+    const middleName = "나라"
+    const firstName = "Nara"
+
+    // ES5 문자열 연결
+
+    console.log(lastName + ", " + firstName + " " + middleName)
+
+    // ES6 템플릿 문자열
+
+    console.log(`${lastName}, ${firstName} ${middleName}`)
+
+
+======================================================
+
+var lastName = "Jang"
+var middleName = "나라"
+var firstName = "Nara"
+var event = "삼총사"
+
+var qty = 4
+var price = 10000
+var ticketAgent = "문화의 광장"
+
+    // ES6 템플릿 문자열은 공백(줄바꿈 포함)을 유지한다
+
+console.log(`
+${firstName} 님께,
+
+${event} 티켓 ${qty} 건을 구매해 주셔서 감사합니다.
+
+주문 상세 정보:
+
+  ${lastName} ${firstName} ${middleName}
+  ${qty} X $${price} = $${qty*price} 공연: ${event}
+  
+공연 시작 30분 전까지 배부처에서 티켓을 수령하시기 바랍니다.
+
+감사합니다.
+
+${ticketAgent} 드림
+`)
+
+[실행 결과]
+Nara 님께,
+
+삼총사 티켓 4 건을 구매해 주셔서 감사합니다.
+
+주문 상세 정보:
+
+  Jang Nara 나라
+  4 X $10000 = $40000 공연: 삼총사
+  
+공연 시작 30분 전까지 배부처에서 티켓을 수령하시기 바랍니다.
+
+감사합니다.
+
+문화의 광장 드림
+
+
+======================================================
+
+[템플릿 문자열]
+
+* template-strings.html 파일 실행 확인
+[하단에 getFullYear() 웹표준 표현 사용 확인 바람]
+ <footer>
+          <p>copyright ${new Date().getFullYear()} | The HTML5 Blog</p> 
+          <!-- getYear 메서드는 121 이라고 나타남 : 비표준 표현
+                : 예를 들면, 2021년이라고 하면 1900년을 차감한 표현이 나타남 -->
+          <!-- getYear 메서드 대신에 웹표준 표현은 getFullYear() 사용하시기 바랍니다 -->
+</footer>
+
+[template-strings.html 소스 코딩]
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="minimum-scale=1.0, width=device-width, maximum-scale=1.0, user-scalable=no"/>
+    <meta charset="utf-8">
+    <title>Template Strings</title>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+</head>
+<body>
+<h1>Template Strings</h1>
+<p>Open the console</p>
+<script type="text/babel">
+
+    var article = {
+      title: "Template Strings",
+      body: `
+        <div>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
+          <p> laboris nisi ut aliquip ex ea commodo consequat.</p>
+        </div>
+      `
+    }
+
+    document.body.innerHTML = `
+    <section>
+      <header>
+          <h1>The HTML5 Blog</h1>
+      </header>
+      <article>
+          <h2>${article.title}</h2>
+          ${article.body}
+      </article>
+      <footer>
+          <p>copyright ${new Date().getFullYear()} | The HTML5 Blog</p> 
+          <!-- getYear 메서드는 121 이라고 나타남 : 비표준 표현
+                : 예를 들면, 2021년이라고 하면 1900년을 차감한 표현이 나타남 -->
+          <!-- getYear 메서드 대신에 웹표준 표현은 getFullYear() 사용하시기 바랍니다 -->
+      </footer>
+    </section>
+    `
+
+</script>
+</body>
+</html>
+
+
+======================================================
+
+function logActivity(name = "장나라", activity = "테니스"){
+    console.log( `${name}은 ${activity}를 좋아합니다.`)
+}
+
+    logActivity()  // 장나라은 테니스를 좋아합니다.
+
+======================================================
+
+[디폴트 파라미터]
+
+var defaultPerson = {
+      name: {
+          first: "나라",
+          last: "장"
+      },
+    favActivity: "테니스"
+}
+
+function logActivity(p=defaultPerson){
+    console.log(`${p.name.first}은(는) ${p.favActivity}를 좋아합니다.`)
+}
+
+logActivity()            // 나라은(는) 테니스를 좋아합니다.
+
+=======================================================
+
+    // 일반 함수 : ES6
+
+    var lordify = function(firstname) {
+      return `켄터베리의 ${firstname}`
+    }
+
+    console.log( lordify("희선") )   // 켄터베리의 희선
+
+=======================================================
+
+   // Arrow Function
+
+    var lordify = firstname => `캔터베리의 ${firstname}`
+
+    console.log( lordify("영애") )   // 캔터베리의 영애
+
+=======================================================
+
+ // Function : 함수 파라미터(매개변수)가 2개 이상이면 괄호가 필요하다. function(firstName, land)
+
+    var lordify = function(firstName, land) {
+      return `${land}의 ${firstName}`
+    }
+
+console.log(lordify("지현", "브리즈번"))
+console.log(lordify("다미", "시드니"))
+
+=======================================================
+
+// 화살표 함수
+
+    var lordify = (firstName, land) => `${land}의 ${firstName}`
+
+    console.log(lordify("지현", "브리즈번"))
+    console.log(lordify("다미", "시드니"))
+
+=======================================================
+
+ // 함수
+
+    var lordify = function(firstName, land) {
+
+      if (!firstName) {
+        throw new Error('lordify에 이름을 남겨야 합니다.')
+      }
+
+      if (!land) {
+        throw new Error('영주에게는 영지가 있어야 합니다.')
+      }
+
+      return `${land}의 ${firstName}`
+    }
+
+    console.log( lordify("연아", "멜버른") )   // 멜버른의 연아
+    console.log( lordify("연아") )               // ! 자바스크립트 오류 (land가 없을 경우) 오류 메시지 나타남
+                                                        // Uncaught Error: 영주에게는 영지가 있어야 합니다.
+    console.log(lordify("", "멜버른"))          // VM5543:3 Uncaught Error: lordify에 이름을 남겨야 합니다.
+    
+=======================================================
+
+// Function
+
+    var gangwon = {
+      resorts: ["용평", " 평창", " 강촌", " 강릉", " 홍천"],
+      print: function(delay=3000) {
+        setTimeout(function() {
+          console.log(this.resorts.join(","))
+        }, delay)
+
+      }
+    }
+
+    gangwon.print()
+
+    // 실행 결과 오류 발생
+    // VM335:8 Uncaught TypeError: Cannot read property 'join' of undefined
+    // at <anonymous>:8:36
+
+=======================================================
+
+// 함수와 bind를 사용함
+
+    var gangwon = {
+    resorts: ["용평", " 평창", " 강촌", " 강릉", " 홍천"],
+    print: function(delay =  3000){
+        setTimeout(function(){
+            console.log(this.resorts.join(","))
+        }.bind(this), delay)
+    }
+}
+
+    gangwon.print()    // 3초 지연 후 gangwon.print() 함수 호출 결과 나타남
+    // 3초 지연 후 아래 메시지가 나타납니다. 
+    [실행 결과 : 3초 지연 후 우측 메시지 나타남] 용평,평창,강촌,강릉,홍천
+=======================================================
+
+// 화살표 함수를 사용함
+
+    var gangwon = {
+      resorts: ["용평", " 평창", " 강촌", " 강릉", " 홍천"],
+      print: function(delay=3000) {
+
+        setTimeout( () => {
+	console.log(this.resorts.join(","))
+        }, delay  )
+      }
+    }
+
+    gangwon.print()   // 3초 지연 후 gangwon.print() 함수 호출 결과 나타남
+    // 3초 지연 후 아래 메시지가 나타납니다. 
+    [실행 결과 : 3초 지연 후 우측 메시지 나타남] 용평,평창,강촌,강릉,홍천
+
+==========================================================
+
+// 화살표 함수를 너무 많이 사용함. this가 window를 가리킴
+
+    var gangwon = {
+      resorts: ["용평","평창","강촌","강릉","홍천"],
+      print: (delay=3000) => {
+
+        setTimeout(() => {
+          console.log(this.resorts.join(","))
+        }, delay)
+
+      }
+    }
+
+    gangwon.print()   // 3초 지연 후 에러 발생 함 : Uncaught TypeError:
+   	  	  // Cannot read property 'join' of undefined at <anonymous>:8:36
+
+===========================================================
+
+// 객체 구조분해
+
+    var sandwich =  {
+      bread: "더치 크런치",
+      meat: "참치",
+      cheese: "스위스",
+      toppings: ["상추", "토마토", "머스타드"]
+    }
+
+    var {bread, meat} = sandwich
+
+    console.log(bread, meat)
+   // 실행 결과 : 더치 크런치 참치
+
+    bread = "마늘"
+    meat = "칠면조"
+
+    console.log(bread, meat)
+    // 마늘 칠면조
+    console.log(sandwich.bread, sandwich.meat)
+    // 더치 크런치 참치
+=======================================================
+
+// 객체를 분해해서 함수의 인자로 넘길수도 있음
+
+    var lordify = regularPerson => {
+      console.log(`캔터베리의 ${regularPerson.firstName}`)
+    }
+
+    var regularPerson = {
+      firstName: "나라",
+      lastName: "장"
+    }
+
+    lordify(regularPerson)  // 캔터베리의 나라
+
+=======================================================
+ // 객체 인자 구조분해
+
+    var lordify = ({firstName}) =>
+      console.log(`캔터베리의 ${firstName}`)
+
+    var regularPerson = {
+      firstName: "나라",
+      lastName: "장"
+    }
+
+    lordify(regularPerson)  // 캔터베리의 나라
+=======================================================
+// 배열 구조분해
+
+    var [firstResort] = ["용평","평창","강촌"]
+
+    console.log(firstResort) // 용평
+=======================================================
+// 배열 구조 분해(다른 예)
+
+    var [,,thirdResort] = ["용평","평창","강촌"]
+
+    console.log(thirdResort)
+=======================================================
+// 객체 리터럴 개선
+
+    var name = "한라산"
+    var elevation = 6388
+
+    var funHike = { name,elevation }
+
+    console.log(funHike)
+=======================================================
+ // 함수를 포함하는 객체 리터럴 개선
+
+    var name = "한라산"
+    var elevation = 6388
+    var print = function() {
+      console.log(`${this.name}의 높이는 ${this.elevation}피트입니다.`)
+    }
+
+    var funHike = { name,elevation,print }
+
+    funHike.print()  // 한라산의 높이는 6388피트입니다.
+=======================================================
+
+// 스프레드 연산자(Spread Operator, 전개 구문, 펼침 연산자)를 통해서
+// 배열, 문자열, 객체 등 반복 가능한 객체를 개별 요소로 분리할 수 있습니다.
+// 즉, 배열 리터럴의 일부를 반복 가능한 식(다른 배열 리터럴 등)에서
+// 초기화하거나 식을 함수 호출에서 여러 인수로 확장할 때 사용합니다.
+
+    var peaks = ["대청봉", "중청봉", "소청봉"]
+    var canyons = ["천불동계곡", "가야동계곡"]
+    var seoraksan = [...peaks, ...canyons]
+
+    console.log(seoraksan.join(', '))
+=======================================================
+ // .reverse()가 peaks 배열을 변경함
+
+    var peaks = ["대청봉", "중청봉", "소청봉"]
+    var [last] = peaks.reverse()
+
+    console.log(last)    // 소청봉
+    console.log(peaks.join(', '))  // 소청봉,중청봉,대청봉
+=======================================================
+// peaks를 스프레드 연산자로 복사한 후 reverse 수행
+
+    var peaks = ["대청봉", "중청봉", "소청봉"]
+    var [last] = [...peaks].reverse()
+
+    console.log(last) // 소청봉
+    console.log(peaks.join(', '))  // 대청봉, 중청봉, 소청봉
+=======================================================
+// 스프레드 연산자와 구조 분해를 함께 사용
+    var lakes = ["경포호", "화진포", "송지호", "청초호"]
+
+    var [first, ...rest] = lakes
+
+    console.log(rest.join(", "))   // 화진포, 송지호, 청초호
+=======================================================
+ // 스프레드 연산자로 인자를 배열로 바꾸거나, 인자 중 일부를 배열로 받기
+
+    function directions(...args) {
+      var [start, ...remaining] = args
+      var [finish, ...stops] = remaining.reverse()
+
+      console.log(`${args.length} 도시를 운행합니다.`)
+      console.log(`${start}에서 출발합니다.`)
+      console.log(`목적지는 ${finish}입니다.`)
+      console.log(`중간에 ${stops.length}군데 들립니다.`)
+    }
+
+    directions("서울","수원","천안","대전","대구","부산")
+    // 6 도시를 운행합니다.
+    // 서울에서 출발 합니다.
+    // 목적지는 부산 입니다.
+    // 중간에 4군데 들립니다.
+=======================================================
+
+
+// 객체에 대한 스프레드 연산자
+
+    var morning = {
+      breakfast: "미역국",
+      lunch: "삼치구이와 보리밥"
+    }
+
+    var dinner = "스테이크 정식"
+
+    var backpackingMeals = {
+      ...morning,
+      dinner
+    }
+
+    console.log(backpackingMeals)
+=======================================================
+
+// 이전 방식으로 생성자를 만들고 프로토타입 설정하기
+
+    function Vacation(destination, length) {
+      this.destination = destination
+      this.length = length
+    }
+
+    Vacation.prototype.print = function() {
+      console.log(this.destination + "은(는) " + this.length + "일 걸립니다.")
+    }
+
+    var maui = new Vacation("마우이", 7)
+
+    maui.print()
+=======================================================
+
+// 클래스를 사용해서 정의하는 새로운 방식 추가
+
+    class Vacation {
+
+    constructor(destination, length) {
+      this.destination = destination
+      this.length = length
+    }
+
+    print() {
+      console.log(this.destination + "은(는) " + this.length + "일 걸립니다.")
+    }
+}
+    const trip = new Vacation("칠레 산티아고", 9)
+
+    trip.print()
+
+=======================================================
+
+ // 상속
+
+    class Vacation {
+      constructor(destination, length) {
+        this.destination = destination
+        this.length = length
+      }
+
+      print() {
+        console.log(this.destination + "은(는) " + this.length + "일 걸립니다.")
+      }
+
+    }
+
+    class Expedition extends Vacation {
+      constructor(destination, length, gear) {
+        super(destination, length)
+        this.gear = gear
+      }
+
+      print() {
+        super.print()
+        console.log(`당신의 ${this.gear.join("와(과) 당신의 ")}를(을) 가져오십시오.`)
+      }
+    }
+
+    const trip2 = new Expedition(
+      "한라산",
+      3,
+      ["선글라스", "오색 깃발", "카메라"] )
+
+    trip2.print()
+
+// 다음은 실행 결과 내용입니다.
+// 한라산은(는) 3일 걸립니다.
+// 당신의 선글라스와(과) 당신의 오색 깃발와(과) 당신의 카메라를(을) 가져오십시오.
+
+console.log(Vacation.prototype)
+
+=======================================================
+
+※ 자바스크립트를 활용한 함수형 프로그래밍
+
+var log = function(message) {
+      console.log(message)
+    }
+
+    log("자바스크립트에서는 함수를 변수에 넣을 수 있습니다.")
+
+// 새로고침(F5)
+
+const log = message => console.log(message)
+
+    log("ES6 화살표 함수 활용")
+
+====================================================
+
+const obj = {
+        message: "함수를 다른 값과 마찬가지로 객체에 추가할 수도 있습니다.",
+        log(message) {
+            console.log(message)
+        }
+    }
+
+    obj.log(obj.message)  // 함수를 다른 값과 마찬가지로 객체에 추가할 수도 있습니다.
+
+====================================================
+
+const messages = [
+      "함수를 배열에 넣을 수도 있습니다.",    // messages[0]
+      message => console.log(message),     // messages[1]
+      "일반적인 값과 마찬가지입니다.",        // messages[2]
+      message => console.log(message)     // messages[3]
+    ]
+
+    messages[1](messages[0])  // 함수를 배열에 넣을 수도 있습니다.
+    messages[3](messages[2])  // 일반적인 값과 마찬가지입니다.
+
+
+====================================================
+
+const insideFn = logger => 
+      logger("함수를 다른 함수에 인자로 넘길 수도 있습니다.")
+
+
+    insideFn(message => console.log(message))  // 함수를 다른 함수에 인자로 넘길 수도 있습니다.
+
+
+====================================================
+
+var createScream = function(logger) {
+        return function(message) {
+            logger(message.toUpperCase() + "!!!")
+        }
+    }
+
+    const scream = createScream(message => console.log(message))
+
+    scream('함수가 함수를 반환할 수도 있습니다')  // 옆에 구문 실행 결과 : 함수가 함수를 반환할 수도 있습니다!!!
+    scream('createScream은 함수를 반환합니다')   // 옆에 구문 실행 결과 : CREATESCREAM은 함수를 반환합니다!!!
+    scream('scream은 createScream이 반환한 함수를 가리킵니다')
+    // 위에 구문 실행 결과 : SCREAM은 CREATESCREAM이 반환한 함수를 가리킵니다!!!
+
+====================================================
+
+const createScream = logger => message => 
+        logger(message.toUpperCase() + "!!!")
+
+    const scream = createScream(message => console.log(message))
+
+    scream('ES6에서는 더 간편하게 createScream을 만들 수 있습니다')
+   // 위에 구문 실행 결과 : ES6에서는 더 간편하게 CREATESCREAM을 만들 수 있습니다!!!
+
+=========================================================================

@@ -1,0 +1,68 @@
+Microsoft Windows [Version 10.0.19044.1889]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\starh>node
+Welcome to Node.js v14.17.6.
+Type ".help" for more information.
+> .exit
+
+C:\Users\starh>node -v
+v14.17.6
+
+C:\Users\starh>npm -v
+8.15.0
+
+C:\Users\starh>cd\
+
+C:\>mkdir react_study
+
+C:\>cd react_study
+
+C:\react_study>npm install -g yarn
+
+C:\react_study>npm install -g create-react-app
+
+===================================================
+C:\Users\starh\AppData\Roaming\npm 폴더 안에 확인 바랍니다.
+===================================================
+
+C:\react_study>create-react-app first_react
+
+C:\react_study>cd first_react
+
+C:\react_study\first_react>npm start
+
+===================================================
+
+Ctrl + C -> Y (Enter 클릭)
+
+===================================================
+
+C:\react_study\first_react>npm run build
+
+C:\react_study\first_react>npm install -g serve
+
+C:\react_study\first_react>serve -s build
+
+===================================================
+
+npm 실행 했을 때와 build 배포 실행 했을 때의 아래 네트워크 리소스 용량 비교 바랍니다.
+
+http://localhost:3000 -> 개발자도구(F12) -> 네트워크 하단 리소스 용량 비교 바랍니다.
+
+===================================================
+
+C드라이브에 build 폴더 내용을 복사해서 넣어줌.
+
+윈도우즈키 + R키 -> inetmgr -> WindowsIIS 웹서버 폴더로 build 폴더 지정함.
+
+http://localhost 또는 http://192.168.0.30 실행함.
+
+===================================================
+
+React Developer Tools 활용
+
+1. Chrome 확장 프로그램 설치
+https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi
+
+2. React 제작 웹 사이트 접속 - 개발자도구(F12) - Components 클릭

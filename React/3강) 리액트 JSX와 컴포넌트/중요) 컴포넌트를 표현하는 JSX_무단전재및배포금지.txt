@@ -1,0 +1,82 @@
+JSX는 JavaScript XML의 줄임말로 '자바스크립트에 XML을 추가한 확장형 문법'입니다.
+
+XML(eXtensible Markup Language) 또한 HTML(Hyper Text Markup Language)의 표현법을 확장한 문법이므로
+자바스크립트와 HTML을 안다면 JSX도 쉽게 이해할 수 있습니다. 또한 기존의 자바스크립트와 HTML을 분리하여
+작성하던 번거로운 방식과 달리 JSX는 하나의 파일에 자바스크립트와 HTML을 동시에 작성할 수 있어서 편리합니다.
+
+1. react_study - first_react 폴더의 src 폴더 안에 App.js 파일 소스 코딩
+
+   1) ./src 폴더에 있는 App.js 파일을 열어서,
+      App_JSXSample.js 파일의 내용들을 App.js에 소스 코딩해 줍니다. 저장 후에,
+
+   2) VisualStudioCode - 터미널 - C:\react_study\first_react> npm start
+
+================================================================================
+
+2. react_study - first_react 폴더의 src 폴더 안에 03 폴더를 만들고
+
+   1) src 폴더 안의 03 폴더 안에 TodaysPlan.jsx 파일을 소스 코딩합니다.
+
+   2) ./src 폴더에 있는 App.js 파일을 열어서,
+      App_TodaysPlan.js 파일의 내용들을 App.js에 소스 코딩해 줍니다.
+
+   3) VisualStudioCode - 터미널 - C:\react_study\first_react> npm start
+
+================================================================================
+
+3. react_study - first_react 폴더의
+
+   1) src 폴더 안의 03 폴더 안에 BooleanComponent.jsx 파일을 소스 코딩합니다.
+
+   2) ./src 폴더에 있는 App.js 파일을 열어서,
+      App_BooleanComponent.js 파일의 내용들을 App.js에 소스 코딩해 줍니다.
+
+   3) VisualStudioCode - 터미널 - C:\react_study\first_react> npm start
+
+================================================================================
+
+4. react_study - first_react 폴더의
+
+   1) src 폴더 안의 03 폴더 안에 StateExample.jsx 파일을 소스 코딩합니다.
+
+   2) ./src 폴더에 있는 App.js 파일을 열어서,
+      App_StateExample.js 파일의 내용들을 App.js에 소스 코딩해 줍니다.
+
+   3) VisualStudioCode - 터미널 - C:\react_study\first_react> npm start
+
+   4) 실행된 Chrome 웹브라우저에서 4초 후에 handleData()함수를 호출하는 거 확인 바랍니다.
+
+================================================================================
+
+5. react_study - first_react 폴더의
+
+   1) src 폴더 안의 03 폴더 안에 Counter.jsx 파일, NewCounter.jsx 파일을 소스 코딩합니다.
+
+   2) ./src 폴더에 있는 App.js 파일을 열어서,
+      App_Counter.js 파일의 내용들을 App.js에 소스 코딩해 줍니다.
+
+   3) VisualStudioCode - 터미널 - C:\react_study\first_react> npm start
+
+================================================================================
+
+6. react_study - first_react 폴더의 src 폴더 안에 App.js 파일 소스 코딩
+
+   1) src 폴더 안의 03 폴더 안에 ListExample.jsx 파일을 소스 코딩합니다.
+
+   2) ./src 폴더에 있는 App.js 파일을 열어서,
+      App_ListExample.js 파일의 내용들을 App.js에 소스 코딩해 줍니다. 저장 후에,
+
+   3) VisualStudioCode - 터미널 - C:\react_study\first_react> npm start
+
+================================================================================
+
+7. react_study - first_react 폴더의 src 폴더 안에 App.js 파일 소스 코딩
+
+   1) src 폴더 안의 03 폴더 안에 TodoList.jsx 파일을 소스 코딩합니다.
+
+   2) ./src 폴더에 있는 App.js 파일을 열어서,
+      App_TodoList.js 파일의 내용들을 App.js에 소스 코딩해 줍니다. 저장 후에,
+
+   3) VisualStudioCode - 터미널 - C:\react_study\first_react> npm start
+
+================================================================================

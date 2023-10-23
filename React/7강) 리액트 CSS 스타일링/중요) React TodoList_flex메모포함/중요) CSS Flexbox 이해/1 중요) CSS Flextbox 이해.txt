@@ -1,0 +1,130 @@
+﻿[중요] 반응형 웹 사이트 구현 : CSS Flexbox
+
+1) Flexbox 기본 개념
+
+https://developer.mozilla.org/ko/docs/Web/CSS/CSS_Flexible_Box_Layout/Basic_Concepts_of_Flexbox
+
+일명 flexbox라 불리는 Flexible Box module은 flexbox 인터페이스 내의
+아이템 간 공간 배분과 강력한 정렬 기능을 제공하기 위한 1차원 레이아웃 모델로 설계되었습니다.
+flexbox를 1차원이라 칭하는 것은, 레이아웃을 다룰 때
+한 번에 하나의 차원(행이나 열)만을 다룬다는 뜻입니다.
+이는 행과 열을 함께 조절하는 CSS 그리드 레이아웃의 2차원 모델과는 대조됩니다.
+
+
+2) Flexbox Froggy - CSS flexbox 속성 배우기 게임
+
+    https://flexboxfroggy.com/#ko
+
+* 참고 웹 사이트 : 플렉스 개구리 게임 웹 사이트 (https://flexboxfroggy.com/#ko) 정답
+
+1 단계 : 
+
+justify-content: flex-end;
+
+2 단계 :
+
+justify-content: center;
+
+3 단계 :
+
+justify-content: space-around;
+
+4 단계 :
+
+justify-content: space-between;
+
+5 단계 :
+
+align-items: flex-end;
+
+6 단계 :
+
+justify-content: center;
+align-items: center;
+
+7 단계 :
+
+justify-content: space-around;
+align-items: flex-end;
+
+8 단계 :
+
+flex-direction: row-reverse;
+
+9 단계 :
+
+flex-direction: column;
+
+10 단계 :
+
+flex-direction: row-reverse;
+justify-content: flex-end;
+
+11 단계 :
+
+flex-direction: column;
+justify-content: flex-end;
+
+12 단계 :
+
+flex-direction: column-reverse;
+justify-content: space-between;
+
+13 단계 :
+
+flex-direction: row-reverse;
+align-items: flex-end;
+justify-content: center;
+
+14 단계 :
+
+order: 1;
+
+15 단계 :
+
+order: -1
+
+16 단계 :
+
+align-self: flex-end;
+
+17 단계 :
+
+order: 1;
+align-self: flex-end;
+
+18 단계 :
+
+flex-wrap: wrap;
+
+19 단계 :
+
+flex-direction: column;
+flex-wrap: wrap;
+
+20 단계 :
+
+
+flex-flow: column wrap;
+
+21 단계 :
+
+align-content: flex-start;
+
+22 단계 :
+
+align-content: flex-end;
+
+23 단계 :
+
+flex-direction: column-reverse;
+align-content: center;
+
+24 단계 :
+
+flex-flow: column-reverse wrap-reverse;
+justify-content: center;
+align-content: space-between;
+
+
+
