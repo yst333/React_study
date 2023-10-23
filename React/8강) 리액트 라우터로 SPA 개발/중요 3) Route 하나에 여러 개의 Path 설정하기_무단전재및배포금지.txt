@@ -1,0 +1,56 @@
+※ Route 하나에 여러 개의 Path 설정하기
+
+Route 하나에 여러 개의 path를 지정하는 것은 리액트 라우터 v5 버전부터
+적용된 기능입니다. 이전 버전에서는 여러 개의 path에 같은 컴포넌트를
+보여 주고 싶다면 다음과 같이 해야 했습니다. 코딩은 하지 말고 참고만 해 주세요.
+
+[src\App.js 참고 : 파일 소스 코딩 안해도 됨. 참고 바람]
+
+import React from 'react';
+import { Route, Link, Switch } from 'react-router-dom';
+import About from './components/About';
+import Home from './components/Home';
+
+const App = () => {
+  return (
+    <div>
+        <Route path="/" component={Home} exact={true} />
+        <Route path="/about" component={About} />
+        <Route path="/info" component={About} />
+      </div>
+  );
+};
+
+export default App;
+
+이렇게 component={About} Route를 두번 사용하는 대신,
+v5 버전부터는 path props를 배열로 설정해 주어,
+여러 경로에서 같은 컴포넌트를 보여줄 수 있게 되었습니다.
+
+=====================================================
+
+* src 폴더 안에 App.js 파일 소스 코딩
+
+[src\App.js 소스 코딩]
+
+import React from 'react';
+import { Route } from 'react-router-dom';
+import About from './components/About';
+import Home from './components/Home';
+
+const App = () => {
+  return (
+    <div>
+        <Route path="/" component={Home} exact={true} />
+        <Route path={['/about', '/info']} component={About} />
+      </div>
+  );
+};
+
+export default App;
+
+=====================================================
+
+npm start를 하여 페이지를 실행한 다음에,
+localhost:3000 끝에 /info 를 추가하여 입력하고 Enter를 눌러줍니다.
+그러면, About 컴포넌트 소개 웹페이지가 나타납니다.

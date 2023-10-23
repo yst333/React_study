@@ -1,0 +1,18 @@
+[중요참고]
+1) 특정 버전 npm 설치 또는 모듈을 설치할 경우 다음과 같이 실행하십니다.
+
+//특정 버전 설치를 위해서는 npm install 모듈명@버전
+
+예시1) npm install -save reactstrap@8.4.1
+
+예시2) npm install -save bootstrap@4.4.1
+
+예시3) npm install npm@6.14.15
+
+2) 삭제할 경우 다음과 같이 실행하십니다.
+
+// npm remove 삭제할 모듈 이름
+
+예시1) npm remove bootstrap
+
+예시2) npm remove reactstrap

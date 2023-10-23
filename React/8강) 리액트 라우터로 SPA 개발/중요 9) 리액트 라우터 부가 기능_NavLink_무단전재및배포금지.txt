@@ -1,0 +1,60 @@
+※ 리액트 라우터 부가 기능_NavLink
+
+NavLink는 Link와 비슷합니다. 현재 경로와 Link에서 사용하는
+경로가 일치하는 경우 특정 스타일 혹은 CSS 클래스를
+적용할 수 있는 컴포넌트입니다.
+
+NavLink에서 링크가 활성화되었을 때의 스타일을 적용할 때는
+activeStyle 값을, CSS 클래스를 적용할 때는 activeClassName 값을
+props로 넣어 주면 됩니다.
+
+Profiles에서 사용하고 있는 컴포넌트에서 Link 대신 NavLink를
+사용하게 하고, 현재 선택되어 있는 경우 검정색 배경에 흰색
+글씨로 스타일을 보여 주게끔 소스 코드를 다음과 같이 수정해 봅니다.
+
+소스 코드를 작성했다면 npm start로 리액트를 구동해 봅니다.
+그리고, "사용자 목록:"에 있는 링크를 클릭했을 때
+백그라운드 색상이 black으로 제대로 바뀌는지 확인해 봅니다.
+
+Profiles.js 소스 코딩
+
+import React from 'react';
+import { NavLink, Route } from 'react-router-dom';
+import Profile from './Profile';
+
+// Profile.js와는 별도로 Profiles.js 파일을
+// 서브 라우트 활용하기 위해 만들어 줍니다!
+const Profiles = () => {
+  
+  // NavLink 스타일 적용을 위한 변수 activeStyle을 정의해 줍니다!
+  const activeStyle = {
+    background: 'black',
+    color: 'white'
+  };
+
+  return (
+    <div>
+      <h3>사용자 목록:</h3>
+      <ul>
+        <li>
+          <NavLink activeStyle={activeStyle} to ="/profiles/start"> start </NavLink>
+        </li>
+        <li>
+          <NavLink activeStyle={activeStyle} to ="/profiles/middle"> middle </NavLink>
+        </li>
+      </ul>
+      <Route
+        path="/profiles"
+        exact
+        render={() => <div>사용자를 선택해주세요.</div>}
+      />
+      <Route path="/profiles/:username" component={Profile} />
+    </div>
+  );
+};
+
+export default Profiles;
+
+
+지금까지 리액트 라우터를 사용하여 웹주소 경로에 따라 다양한 페이지를
+보여주는 방법을 알아보았습니다.

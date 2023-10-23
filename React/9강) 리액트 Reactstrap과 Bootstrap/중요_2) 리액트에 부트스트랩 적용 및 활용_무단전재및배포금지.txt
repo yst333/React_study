@@ -1,0 +1,75 @@
+※ 리액트에 부트스트랩 적용 및 활용 [본 자료의 무단 전재 및 배포를 금지합니다]
+
+1. bootstrap은 프론트엔드 디자인을 쉽게 구현할 수 있도록 도와주는
+   html, css, js 등 구현을 위한 layout 프레임워크 입니다.
+
+2. bootstrap을 React에서 사용할 수 있도록 패키지로 만든 것이
+   reactstrap입니다. 여기서, Alerts 패키지는 알림 영역에 대한
+   기능을 제공합니다. 우선, npm을 활용해서 reactstrap을 설치해 줍니다.
+
+   * reactstrap 실습할 때 버전은 다음과 같이 지정해서 설치 바랍니다.
+     (버전이 다르면 x 박스 표시 등 이상하게 표현될 수 있습니다)
+    중요1_이걸로 필히! 설치 바랍니다)
+    C:\react_study\reactstrap_example>npm install --save reactstrap
+    참고1) C:\react_study\reactstrap_example>npm install -save reactstrap@8.4.1  
+
+3. reactstrap은 bootsrap.css를 포함하고 있지 않기 때문에
+   다음과 같이 bootstrap도 npm으로 설치해 줍니다.
+
+   * reactstrap 실습할 때 버전은 다음과 같이 지정해서 설치 바랍니다.
+     (버전이 다르면 x 박스 표시 등 이상하게 표현될 수 있습니다)
+   중요2_이걸로 필히! 설치 바랍니다)
+   C:\react_study\reactstrap_example>npm install --save bootstrap
+   참고2) C:\react_study\reactstrap_example>npm install -save bootstrap@4.4.1
+
+4. yarn 또는 npm으로 설치시 index.js(또는 App.js)에 다음의 구문을
+   추가해 주시기 바랍니다.
+
+   import 'bootstrap/dist/css/bootstrap.css'; 
+
+5. react_bootstrap_navbar 리액트 앱 프로젝트 생성
+  1) C:\react_study\reactbootstrap_example>cd..
+  2) C:\react_study>create-react-app react_bootstrap_navbar
+  3) C:\react_study>cd react_bootstrap_navbar
+  4) C:\react_study\react_bootstrap_navbar>npm start
+  5) C:\react_study\react_bootstrap_navbar>npm install --save reactstrap
+  6) C:\react_study\react_bootstrap_navbar>npm install --save bootstrap
+  7) C:\react_study\react_bootstrap_navbar>npm install --save react-bootstrap
+  8) 모바일 웹에서 반응형 웹 구현 확인도 해봅니다.
+
+============================================================
+
+[중요참고]
+1) 특정 버전 npm 설치 또는 모듈을 설치할 경우 다음과 같이 실행하십니다.
+// 특정 버전 설치를 위해서는 npm install 모듈명@버전
+예시1) npm install -save reactstrap@8.4.1
+예시2) npm install -save bootstrap@4.4.1
+예시3) npm install npm@6.14.15
+
+2) 삭제할 경우 다음과 같이 실행하십니다.
+// npm remove 삭제할 모듈 이름
+예시1) npm remove bootstrap
+예시2) npm remove reactstrap
+
+=========================================================================
+
+참고로, 리액트에 부트스트랩 설치 방법은 아래의 3개의 방법 중에서 1개를 선택해서 사용하시면 됩니다.
+1) CDN 설치 : index.html의 <head> 태그 안에 다음과 같이 CDN 정보를 추가해줍니다.
+                 cdn이 변경될 수 있으니 bootstrapcdn에서 최신버전으로 사용해줍니다.
+ <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+ integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" 
+ crossorigin="anonymous"/> 
+
+2) yarn으로 설치 : VSCode 터미널에 명령어를 입력 합니다.
+   yarn add react-bootstrap bootstrap
+
+3) npm으로 설치
+    npm install react-bootstrap bootstrap
+
+4) 주의사항
+   yarn 또는 npm으로 설치시 index.js(또는 App.js)에 다음의 구문을 추가해 주시기 바랍니다.
+   import 'bootstrap/dist/css/bootstrap.css'; 
+
+5) 적용법 : bootstrapk.com에서 원하는 UI를 가져와서 사용하시면 됩니다.
+
+=========================================================================

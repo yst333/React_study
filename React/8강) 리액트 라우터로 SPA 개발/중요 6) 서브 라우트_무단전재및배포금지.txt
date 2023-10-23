@@ -1,0 +1,101 @@
+※ 서브 라우트
+
+서브 라우트는 라우트 내부에 또 라우트를 정의하는 것을 의미합니다.
+이 작업은 그렇게 복잡하지 않습니다. 그냥 라우트로 사용되고 있는
+컴포넌트의 내부에 Route 컴포넌트를 또 사용하면 됩니다.
+
+서브 라우트를 직접 만들어 봅니다. 기존의 App 컴포넌트에서는
+두 종류의 프로필 링크를 보여 주었는데요. 이를 잘라내서
+프로필 링크를 보여 주는 Profiles라는 라우트 컴포넌트를 따로 만들고,
+그 안에서 Profile 컴포넌트를 서브 라우트로 사용하도록 소스 코드를
+작성해 봅니다. 우선 Profiles라는 컴포넌트를 만들어 줍니다.
+
+[중요 : 앞서, Profile.js와는 별도로 Profiles.js 파일을 만들어줌!]
+1. src 폴더에 Profiles.js 소스 코딩 : src\Profiles.js
+
+import React from 'react';
+import { Link, Route } from 'react-router-dom';
+
+import Profile from './Profile';
+
+// Profile.js와는 별도로 Profiles.js 파일을
+// 서브 라우트 활용하기 위해 만들어 줍니다!
+
+const Profiles = () => {
+  return (
+    <div>
+      <h3>사용자 목록:</h3>
+      <ul>
+        <li>
+          <Link to ="/profiles/star"> star </Link>
+        </li>
+        <li>
+          <Link to ="/profiles/middle"> middle </Link>
+        </li>
+      </ul>
+
+      <Route
+        path="/profiles"
+        // exact={true} 대신 exact 라고 축약 표현도 가능함.
+        exact
+        render={() => <div>사용자를 선택해주세요!</div>}
+      />
+      <Route path="/profiles/:username" component={Profile} />
+    </div>
+  );
+};
+
+export default Profiles;
+
+================================================
+
+위의 소스 코드에서 첫 번째 Route 컴포넌트에는 component 대신
+render라는 props를 넣어 주었습니다. 컴포넌트 자체를 전달하는
+것이 아니라, 보여 주고 싶은 JSX를 넣어 줄 수 있습니다. 지금처럼
+따로 컴포넌트를 만들기 애매한 사황에 사용해도 되고, 컴포넌트에
+props를 별도로 넣어 주고 싶을 때도 사용할 수 있습니다.
+
+JSX에서 props를 설정할 때 값을 생략하면 자동으로 true로 설정됩니다.
+예를 들어 현재 Profile 컴포넌트의 첫 번째 Route에서 exact={true} 대신
+그냥 exact라고만 적어 주었는데요. 이는 exact={true}와 같은 의미입니다.
+
+컴포넌트를 다 만들었다면 기존의 App 컴포넌트에 있던 프로필 링크를 지우고,
+Profiles 컴포넌트를 /profiles 경로에 연결시켜 줍니다. 그리고 해당 경로로
+이동하는 링크도 추가해 줍니다. 서브 라우트가 잘 동작되는지 확인합니다.
+
+[src\App.js 소스 코딩]
+
+import React from "react";
+import { Route, Link } from "react-router-dom";
+import About from "./components/About";
+import Home from "./components/Home";
+import Profiles from "./components/Profiles";
+
+const App = () => {
+  return (
+    <div>
+      <ul>
+        <li>
+          <Link to="/">홈</Link>
+        </li>
+        <li>
+          <Link to="/about">소개</Link>
+        </li>
+        <li>
+          <Link to="/profiles">프로필</Link>
+        </li>
+      </ul>
+      <hr />
+      <Route path="/" component={Home} exact={true} />
+      <Route path={["/about", "/info"]} component={About} />
+      <Route path="/profiles" component={Profiles} />
+    </div>
+  );
+};
+
+export default App;
+
+======================================================
+
+[실행 확인]
+C:\router-example>npm start

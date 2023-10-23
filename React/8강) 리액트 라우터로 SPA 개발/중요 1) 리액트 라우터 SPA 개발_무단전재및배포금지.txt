@@ -1,0 +1,149 @@
+※ 리액트 라우트 SPA(Single Page Application) 개발
+
+1. 프로젝트 생성 및 라이브러리 설치
+
+C:\reactstart>create-react-app router_example
+
+또는 
+
+C:\>yarn create react-app router-example
+
+2. 해당 프로젝트 디렉토리로 이동하여 리액트 라우터 라이브러리 설치
+   이때, 리액트 라우터를 설치할 때는 yarn을 사용하여
+   react-router-dom이라는 라이브러리를 설치하면 됩니다.
+
+   C:\>cd router-example
+
+   C:\react_study\router_example>npm uninstall react-router-dom
+   [중요 : react-router-dom 5.3.0 버전으로 설치 바랍니다]
+   C:\react_study\router_example>npm install -save react-router-dom@5.3.0
+
+   또는
+
+   C:\router-example>yarn add react-router-dom@5.3.0
+  [C:\router-example\node_modules 폴더에서 react-router-dom 설치 폴더를 확인합니다]
+
+   C:\router-example>npm start
+
+   또는
+
+   C:\router-example>yarn start
+
+3. 프로젝트에 라우터 적용
+   프로젝트에 리액트 라우터를 적용할 때는 src/index.js 파일에서 react-router-dom에
+   내장되어 있는 BrowserRouter라는 컴포넌트를 사용하여 <>로 감싸면 됩니다.
+   이 컴포넌트는 웹 애플리케이션에 HTML5의 History API를 사용하여 페이지를
+   새로고침하지 않고도 주소를 변경하고, 현재 주소에 관련된 정보를 props로 쉽게
+   조회하거나 사용할 수 있도록 해 줍니다.
+   참고로, serviceWorker.js 파일은 푸쉬 알림이나, 오프라인 환경을 지원할수 있게 해주는 파일입니다.
+   활성화시키고 싶다면, index.js에서 serviceWorker.js 파일을 활성화 시켜주면 됩니다.
+
+* src 폴더 안에 index.js 파일 소스 코딩
+
+[src\index.js 파일 소스 코딩]
+
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import { BrowserRouter } from 'react-router-dom';
+import './index.css';
+import App from './App';
+
+// src 폴더에 serviceWorker.js 파일을 넣어줍니다.
+import * as serviceWorker from './serviceWorker';
+
+// 프로젝트에 리액트 라우터를 적용할 때는 src/index.js 파일에서
+// react-router-dom에 내장되어 있는 BrowserRouter라는 컴포넌트를
+// 사용하여 감싸면 됩니다.
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(<BrowserRouter><App /></BrowserRouter>);
+
+// 여기서는, serviceWorker.unregister(); 처리를 해줍니다.
+// 이것은 리액트 앱 배포시 cache를 남기지 않도록 처리해 줍니다.
+// 이렇게 해주는 이유는, index 파일이 cache를 남기게 된다면,
+// static 자산의 파일명이 업데이트 되더라도
+// index 파일에 링크된 파일명이 바뀌지 않기 때문에
+// 새로운 배포가 적용되지 않을 수 있기 때문입니다.
+serviceWorker.unregister();  
+
+================================================================
+
+4. 페이지 만들기
+   이제 라우터로 사용할 페이지 컴포넌트를 만들 차례입니다. 사용자가 웹 사이트에
+   들어왔을 때 맨 처음 보여 줄 Home 컴포넌트와 웹 사이트를 소개하는
+   About 컴포넌트를 만들어 보겠습니다. src 디렉터리에 다음 파일을 만들어 줍니다.
+  
+   * src 폴더 안에 Home.js 파일 소스 코딩
+   1) src\Home.js 파일 소스 코딩
+
+import React from 'react';
+
+const Home = () => {
+  return (
+    <div>
+      <h1>홈</h1>
+      <p>홈, 그 페이지는 가장 먼저 보여지는 페이지!</p>
+    </div>
+  );
+};
+
+export default Home;
+
+==========================================================
+
+  * src 폴더 안에 About.js 파일 소스 코딩
+  2) src\About.js 파일 소스 코딩
+
+import React from 'react';
+
+const About = () => {
+  return (
+    <div>
+      <h1>소개</h1>
+      <p>이 프로젝트는 리액트 라우터 기초를 실습해보는 예제 프로젝트입니다.</p>
+    </div>
+  );
+};
+
+export default About;
+
+==========================================================
+
+   이제 페이지로 사용할 모든 컴포넌트가 완성되었습니다.
+
+5. Route 컴포넌트로 특정 주소에 컴포넌트 연결
+   Route라는 컴포넌트를 사용하여 사용자의 현재 경로에 따라 다른 컴포넌트를 보여 주겠습니다.
+   Route 컴포넌트를 사용하면 어떤 규칙을 가진 경로에 어떤 컴포넌트를 보여 줄지 정의할 수 있습니다.
+
+   [예시] 사용 방식은 다음과 같습니다.
+   <Route path="주소규칙" component={보여 줄 컴포넌트} />
+
+   App.js를 열어서 기존 코드를 모두 제거하고, Route 컴포넌트를 사용하여
+   방금 만든 Home 컴포넌트 혹은 About 컴포넌트를 보여 주도록 코딩해 줍니다.
+
+   * src 폴더 안에 App.js 파일 소스 코딩
+   [src\App.js 파일 소스 코딩]
+ 
+   import React from 'react';
+   import { Route } from 'react-router-dom';
+   import About from './components/About';
+   import Home from './components/Home';
+
+const App = () => {
+  // Home을 위한 Route 컴포넌트를 사용할 때 exact={true} 의미는
+  // exact라는 props를 true로 설정한다는 것입니다.
+  return (
+    <div>
+        <Route path="/" component={Home} exact={true} />
+        <Route path="/about" component={About} />
+    </div>
+  );
+};
+
+export default App;
+
+===========================================================
+
+   여기까지 코드를 작성한 뒤 터미널에 npm start를 입력하여 개발 서버를 시작해 봅니다.
+   그러면, 첫 화면에 Home 컴포넌트가 나타납니다.
+   그리고, 다음으로 주소창에 localhost:3000 끝에 /about을 붙여줍니다.
+   즉, localhost:3000/about 경로를 입력하여 Enter를 누르면 About 컴포넌트가 나타납니다.

@@ -1,0 +1,65 @@
+※ 리액트 라우터 부가 기능_Switch
+
+Switch 컴포넌트는 여러 Route를 감싸서 그 중 일치하는
+단 하나의 라우트만을 렌더링시켜 줍니다. Switch를 사용하면
+모든 규칙과 일치하지 않을 때 보여 줄 Not Found 페이지도
+구현할 수 있습니다.
+
+App.js 소스 코딩
+
+import React from 'react';
+import { Route, Link, Switch } from 'react-router-dom';
+import About from './components/About';
+import Home from './components/Home';
+import Profiles from './components/Profiles';
+import HistorySample from './components/HistorySample';
+
+const App = () => {
+  return (
+    <div>
+      <ul>
+        <li>
+          <Link to="/">홈</Link>
+        </li>
+        <li>
+          <Link to="/about">소개</Link>
+        </li>
+        <li>
+          <Link to="/profiles">프로필</Link>
+        </li>
+        <li>
+          <Link to="/history">History 예제</Link>
+        </li>
+      </ul>
+      <hr />
+      <Switch>
+        <Route path="/" component={Home} exact={true} />
+        <Route path={['/about', '/info']} component={About} />
+        <Route path="/profiles" component={Profiles} />
+        <Route path="/history" component={HistorySample} />
+        <Route
+          // path를 따로 정의하지 않으면 모든 상황에 렌더링 적용함
+          render={({ location }) => (
+            <div>
+              <h2>이 페이지는 존재하지 않습니다.</h2>
+              <p>{location.pathname}</p>
+            </div>
+          )}
+        />
+      </Switch>
+    </div>
+  );
+};
+
+export default App;
+
+================================================
+
+npm start로 리액트 웹을 구동해 봅니다.
+
+http://localhost:3000 끝에 /nowhere (또는 /testhere) 를 붙여주고
+Enter를 눌러 줍니다.
+
+이제 존재하지 않는 웹 페이지인 http://localhost:3000/nowhere
+(또는 http://localhost:3000/testhere) 웹 페이지에서
+"이 페이지는 존재하지 않습니다."라는 문구를 확인합니다.

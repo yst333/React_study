@@ -1,0 +1,95 @@
+※ 리액트 라우터 부가 기능_history
+
+history 객체는 라우트로 사용된 컴포넌트에 match, location과 함께
+전달되는 props 중 하나로, 이 객체를 통해 컴포넌트 내에 구현하는
+메서드에서 라우터 API를 호출할 수 있습니다. 예를 들어 특정 버튼을
+눌렀을 때 뒤로 가거나, 로그인 후 화면을 전환하거나, 다른 페이지로
+이탈하는 것을 방지해야 할 때 history를 활용합니다.
+
+이 객체를 사용하는 예제 페이지를 작성해 봅니다.
+여기서는 HistorySample이라는 컴포넌트를 다음과 같이 코딩합니다.
+
+HistorySample.js 소스 코딩
+
+import React, { Component } from 'react';
+
+class HistorySample extends Component {
+  // 뒤로가기
+  handleGoBack = () => {
+    this.props.history.goBack();
+  };
+
+  // 홈으로 이동
+  handleGoHome = () => {
+    this.props.history.push('/');
+  };
+
+  componentDidMount() {
+    console.log(this.props);
+    // 이부분을 설정하면 페이지에 변화가 생기려고 할 때마다
+    // 정말 나갈 것인지를 질문하게 됩니다.
+    this.unblock = this.props.history.block('정말 떠나실건가요?');
+  };
+
+  componentWillUnmount() {
+    // 컴포넌트가 언마운트 되면 질문을 멈춤
+    if (this.unblock) {
+      this.unblock();
+    }
+  };
+  render() {
+    return (
+      <div>
+        <button onClick={this.handleGoBack}>뒤로!</button>
+        <button onClick={this.handleGoHome}>홈으로!</button>
+      </div>
+    );
+  }
+}
+export default HistorySample;
+
+앞서 HistorySample.js 소스를 코딩하고, App에서 /history 경로에
+해당 HistorySample 컴포넌트가 보이도록 설정해 봅니다.
+
+App.js 소스 코딩
+
+import React from 'react';
+import { Route, Link } from 'react-router-dom';
+import About from './components/About';
+import Home from './components/Home';
+import Profiles from './components/Profiles';
+import HistorySample from './components/HistorySample';
+
+const App = () => {
+  return (
+    <div>
+      <ul>
+        <li>
+          <Link to="/">홈</Link>
+        </li>
+        <li>
+          <Link to="/about">소개</Link>
+        </li>
+        <li>
+          <Link to="/profiles">프로필</Link>
+        </li>
+        <li>
+          <Link to="/history">History 예제</Link>
+        </li>
+      </ul>
+      <hr />      
+        <Route path="/" component={Home} exact={true} />
+        <Route path={['/about', '/info']} component={About} />
+        <Route path="/profiles" component={Profiles} />
+        <Route path="/history" component={HistorySample} />        
+    </div>
+  );
+};
+
+export default App;
+
+앞서 App 소스 코딩 후에 npm start로 리액트를 구동하고,
+http://localhost:3000/history 페이지에서, "History 예제"를 클릭해 봅니다.
+이때, "홈", "소개", "프로필", "뒤로" 버튼 또는 "홈으로" 버튼을 클릭할 경우,
+현재 페이지에서 이탈할 것인지를 물어보는 "정말 떠나실 건가요?" 메시지 창이
+나타나는 지도 확인해 봅니다.

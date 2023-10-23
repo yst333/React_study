@@ -1,0 +1,107 @@
+※ URL 파라미터와 쿼리
+
+페이지 주소를 정의할 때 간혹 유동적인 값을 전달해야 할 때도 있습니다.
+이는 파라미터와 쿼리로 나눌 수 있습니다.
+1. 파라미터 예시 : /profile/start
+2. 쿼리 스트링 예시 : /about?details=true
+
+유동적인 값을 사용해야 하는 상황에서 파라미터를 써야 할지 쿼리 스트링을
+써야 할지 정할 때, 무조건 따라야 하는 규칙은 없습니다. 다만, 일반적으로
+파라미터는 특정 아이디 혹은 이름을 사용하여 조회할 때 사용하고,
+쿼리 스트링은 우리가 어떤 키워드를 검색하거나 페이지에 필요한 옵션을
+전달할 때 사용합니다.
+
+3. URL 파라미터
+
+Profile 페이지에서 파라미터를 사용해 봅니다. /profile/start 와 같은 형식으로
+뒷부분에 유동적인 username값을 넣어 줄 때 해당 값을 props로 받아 와서
+조회하는 방법을 알아보겠습니다. Profile이라는 컴포넌트를 다음과 같이
+만들어 봅니다.
+
+[src\Profile.js 소스 코딩]
+
+import React from 'react';
+
+const data = {
+  star: {
+    name: '장나라',
+    description: '리액트를 시작하는 개발자'
+  },
+  middle: {
+    name: '김희선',
+    description: '아름다운 사람'
+  }
+};
+
+// match, location, history 등의 객체 활용
+// match의 속성인 params, isExact, url 등의 타입 활용
+// match, props 참고 웹사이트 : https://basketdeveloper.tistory.com/51
+const Profile = ({ match }) => {
+  const { username } = match.params;
+  const profile = data[username];
+  if (!profile) {
+    return <div>존재하지 않는 사용자입니다!</div>;
+  }
+  return (
+    <div>
+      <h3>
+        {username}({profile.name})
+      </h3>
+      <p>{profile.description}</p>
+    </div>
+  );
+};
+
+export default Profile;
+
+=================================================
+
+URL 파라미터를 사용할 때는 라우트로 사용되는 컴포넌트에서 받아 오는
+match 라는 객체 안의 params 값을 참조합니다. match 객체 안에는
+현재 컴포넌트가 어떤 경로 규칙에 의해 보이는지에 대한 정보가 들어 있습니다.
+
+이제 App 컴포넌트에 Profile 컴포넌트를 위한 라우트를 정의해 봅니다.
+이번에 사용할 path 규칙에는 /profile/:username이라고 넣어 주면 됩니다.
+이렇게 설정하면 match.params.username 값을 통해 현재 username 값을
+조회할 수 있습니다. 라우트를 정의하고 나서 상단에 각 프로필 페이지로
+이동하는 링크도 추가해 봅니다.
+
+App.js 소스 코딩
+
+import React from 'react';
+import { Route, Link } from 'react-router-dom';
+import About from './components/About';
+import Home from './components/Home';
+import Profile from './components/Profile';
+
+const App = () => {
+  return (
+    <div>
+      <ul>
+        <li>
+          <Link to="/">홈</Link>
+        </li>
+        <li>
+          <Link to="/about">소개</Link>
+        </li>
+        <li>
+          <Link to="/profile/star">star 프로필</Link>
+        </li>
+        <li>
+          <Link to="/profile/middle">middle 프로필</Link>
+        </li>
+      </ul>
+      <hr />
+        <Route path="/" component={Home} exact={true} />
+        <Route path={['/about', '/info']} component={About} />
+        {/* Url에 파라미터를 지정할 때에는 :을 사용합니다 */}
+        <Route path="/profile/:username" component={Profile} />
+       </div>
+  );
+};
+
+export default App;
+
+====================================================
+
+npm start로 URL 파라미터 활용 웹페이지를 시작해서 프로필 페이지를 확인해 봅니다.
