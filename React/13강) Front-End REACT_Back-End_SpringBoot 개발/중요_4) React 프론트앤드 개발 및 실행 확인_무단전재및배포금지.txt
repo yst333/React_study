@@ -1,0 +1,419 @@
+※ React 프론트 앤드 개발 : 리액트 라이브러리의 경우 검증된 버전 체크 활용도 필요함
+(본 자료의 무단 전재 및 배포를 금지합니다)
+
+1. frontendreact 앱 프로젝트 생성
+
+frontendreact 앱 프로젝트 생성은 create-react-app를 활용해서 설치합니다. 
+
+C:\frontendreact>create-react-app frontendreact --scripts-version 4.0.3
+
+[에러참고 : "react-scripts": "4.0.3" 설치함. "react-scripts": "5.0.0"의 경우 버전 호환 문제로 에러날 수 있음]
+
+또는 
+
+C:\frontendreact>yarn create react-app frontendreact --scripts-version 4.0.3
+설치를 완료를 하게된다면  다음과 같은 코드가 나옵니다.
+
+We suggest that you begin by typing:
+
+  cd frontendreact
+  npm start
+
+해당 디렉토리로 이동하여, npm start(또는 yarn start)를 통해서 실행을 합니다.
+
+========================================================================
+
+[중요 : "react-scripts": "5.0.0" 설치 후 yarn start 할 경우 다음과 같이 에러 메시지가 나타날 경우, package.json 파일에서 
+react-scripts 버전 확인 바람. 예시 : "react-scripts": "5.0.0"이 아닌 "react-scripts": "4.0.3", 버전으로 변경하고,
+yarn install 후 yarn start 해보기 바람]
+
+[다음]
+> react-scripts start
+
+Invalid options object. Dev Server has been initialized using an options object that does not match the API schema.
+ - options.allowedHosts[0] should be a non-empty string.
+
+========================================================================
+
+[참고]
+C:\ReactSpringBoot>yarn global add create-react-app
+         [참고 : npm install -g create-react-app]
+C:\ReactSpringBoot\frontendreact>yarn install
+
+========================================================================
+
+2. 리액트와 스프링부트의 CORS 문제 해결하기
+
+스프링부트의 백엔드 서버는 localhost:9008에서 실행되고 있고,
+React 프론트엔드 서버는 localhost:3000번으로 실행됩니다.
+그러다보니 CORS( cross-origin requests) 가 발생하게되는데,
+그런 문제를 해결 하기위해서는 Proxy를 프론트쪽에서 잡아주셔야 합니다. 
+
+package.json 파일에 다음의 구문을 추가해 줍니다.
+
+[중요 : 추가해줄 구문]
+
+"proxy": "http://localhost:9008",
+
+====================================================================
+
+[앞서 Proxy 적용이 된 CORS 문제 해결된 package.json 파일]
+{
+  "name": "frontend",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.1.0",
+    "@testing-library/user-event": "^12.1.10",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-scripts": "4.0.3",
+    "web-vitals": "^1.0.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+
+  "proxy": "http://localhost:9008",
+
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
+
+====================================================================
+
+3. 리액트의 Invalid options object. Dev Server has been initialized using an options object that does not match the API schema.
+   오류 문제 해결
+
+[중요] 리액트 앱 프로젝트에 .env 파일 생성 후 다음의 구문을 추가해 줍니다.
+
+[중요 : .env 파일 생성 후에 추가해줄 구문]
+DANGEROUSLY_DISABLE_HOST_CHECK=true
+
+====================================================================
+
+
+4. axios 라이브러리 추가
+
+   C:\ReactSpringBoot\frontendreact>npm install axios@0.24.0
+
+   또는 
+
+   C:\ReactSpringBoot\frontendreact>yarn add axios@0.24.0
+
+5. react-router-dom 라이브러리 추가
+
+   C:\ReactSpringBoot\frontendreact>npm install react-router-dom@5.3.0
+
+   또는
+
+   C:\ReactSpringBoot\frontendreact>yarn add react-router-dom@5.3.0
+
+6. package.json 파일 안에 dependencies 에 "axios": "^0.24.0",
+   "react-router-dom": "5.3.0" 추가 확인함
+
+[참고 : yarn.lock 파일은 항상 yarn 이 자동으로 관리하도록 하고,
+        직접 수정하지 않습니다. 그리고 버전관리에 포함합니다]
+
+7. 앞서, package.json 파일 안에 "proxy": "http://localhost:9008", 추가했던거 확인함.
+
+  "dependencies": {
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react": "^12.0.0",
+    "@testing-library/user-event": "^13.2.1",
+    "axios": "^0.24.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-router-dom": "5.3.0",
+    "react-scripts": "4.0.3",
+    "web-vitals": "^2.1.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "proxy": "http://localhost:9008",
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+
+8. frontendreact\src폴더 안에 App.js 소스 코딩
+
+[App.js 소스 코딩]
+import { Route } from "react-router-dom";
+import ViewButton from "./views/ViewButton.js";
+import InputForm from "./views/InputForm.js";
+
+const App = () => {
+  return (
+    <>
+      <Route exact path="/" component={ViewButton} />
+      {/*/:crud 경로에서 :crud 부분은 URL 파라미터를 정의할 때
+         사용하는 React Router의 문법입니다.
+          경로에 이와 같이 URL 파라미터가 포함된 경우,
+          패턴 매칭이 되어 /1, /a 등이 모두 매칭이 되며,
+          해당 파라미터는 변수화되어 맵핑된 컴포넌트에서
+          match.params.crud 같이 읽어올 수 있습니다. */}
+      <Route exact path="/:crud" component={InputForm} />
+    </>
+  );
+};
+
+export default App;
+
+==========================================================
+
+9. frontendreact\src폴더 안에 App.css 소스 안에 내용들은 없어도 됨
+
+[App.css 소스 코딩]
+
+/* 안에 내용들은 없어도 됨 */
+
+10. serviceWorker.js 파일을 src 폴더 안에 넣어줌
+
+11. frontendreact\src폴더 안에 index.js 수정 코딩 : serviceWorker.js 파일도 추가해 줌
+
+[index.js 소스 코딩]
+
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import { BrowserRouter } from 'react-router-dom';
+import './index.css';
+import App from './App';
+
+// src 폴더에 serviceWorker.js 파일을 넣어줍니다.
+import * as serviceWorker from './serviceWorker';
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(<BrowserRouter><App /></BrowserRouter>);
+
+// 여기서는, serviceWorker.unregister(); 처리를 해줍니다.
+// 이것은 리액트 앱 배포시 cache를 남기지 않도록 처리해 줍니다.
+// 이렇게 해주는 이유는, index 파일이 cache를 남기게 된다면,
+// static 자산의 파일명이 업데이트 되더라도
+// index 파일에 링크된 파일명이 바뀌지 않기 때문에
+// 새로운 배포가 적용되지 않을 수 있기 때문입니다.
+serviceWorker.unregister();  
+
+==========================================================
+
+12. frontendreact\src폴더 안에 views 폴더 생성
+
+13. 앞서 생성한 views 폴더 안에 ViewButton.js 소스 코딩
+
+[ViewButton.js 소스 코딩]
+
+import React from "react";
+import { Link } from "react-router-dom";
+
+const ViewButton = () => {
+  return (
+    <>
+      <Link to="/Insert">
+        <button>게시글 등록</button>
+      </Link>
+      <Link to="/View">
+        <button>최근 게시글 보기</button>
+      </Link>
+      <Link to="/Update">
+        <button>최근 게시글 수정</button>
+      </Link>
+      <Link to="/Delete">
+        <button>최근 게시글 삭제</button>
+      </Link>
+    </>
+  );
+};
+
+export default ViewButton;
+
+==========================================================
+
+14. 앞서 생성한 views 폴더 안에 InputForm.js 소스 코딩
+
+[InputForm.js 소스 코딩]
+
+import axios from "axios";
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+
+class InputForm extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      articleId: "",
+      articleTitle: "",
+      articleContent: "",
+      crud: props.match.params.crud,
+    };
+    if (this.state.crud !== "Insert") {
+      this.getData();
+    }
+  }
+
+  createHeaderName() {
+    const crud = this.state.crud;
+    if (crud === "View") {
+      return "조회";
+    } else if (crud === "Update") {
+      return "수정";
+    } else if (crud === "Delete") {
+      return "삭제";
+    } else if (crud === "Insert") {
+      return "등록";
+    }
+  }
+
+  createCrudBtn() {
+    const crud = this.state.crud;
+    if (crud === "View") {
+      return null;
+    } else {
+      const crudName =
+      crud === "Update" ? "수정" : crud === "Insert" ? "등록" : "삭제";
+      return (
+        <button onClick={() => this.crud()}>게시글 {crudName}</button>
+      );
+    }
+  }
+
+  crud() {
+    const { articleId, articleTitle, articleContent, crud } = this.state;
+
+    let crudType = "";
+
+    if (crud === "Update") {
+      crudType = "/updateProcess.do";
+    } else if (crud === "Delete") {
+      crudType = "/deleteProcess.do";
+    } else if (crud === "Insert") {
+      crudType = "/insertProcess.do";
+    } else if (crud === "View") {
+      return null;
+    }
+
+    let form = new FormData();
+    form.append("articleContent", articleContent);
+    form.append("articleTitle", articleTitle);
+    if (crud !== "Insert") {
+      form.append("articleId", articleId);
+    }
+
+    axios
+      .post(crudType, form)
+      .then((res) => {
+        alert("요청이 처리되었습니다");
+        this.props.history.push("/");
+      })
+      .catch((err) => alert("error: " + err.response.data.msg));
+  }
+
+  getData() {
+    axios.get("/view.do").then((res) => {
+      const data = res.data;
+      this.setState({
+        articleId: data.articleId,
+        articleTitle: data.articleTitle,
+        articleContent: data.articleContent,
+      });
+    });
+  }
+
+  createArticleIdTag() {
+    const articleId = this.state.articleId;
+    const crud = this.state.crud;
+    if (crud !== "Insert") {
+      return <input type="hidden" value={articleId || ''} readOnly />;
+    } else {
+      return null;
+    }
+  }
+
+  render() {
+    const articleTitle = this.state.articleTitle;
+    const articleContent = this.state.articleContent;
+
+    return (
+      <>
+        <h1>게시글 {this.createHeaderName()}</h1>
+        {this.createArticleIdTag()}
+        <h3>제목</h3>
+        <input
+          type="text"
+          value={articleTitle || ''}
+          onChange={(event) =>
+            this.setState({ articleTitle: event.target.value })
+          }
+        />
+        <br />
+        <h3>내용</h3>
+        <textarea
+          rows="10"
+          cols="20"
+          value={articleContent || ''}
+          onChange={(event) =>
+            this.setState({ articleContent: event.target.value })
+          }
+        ></textarea>
+        <br /> <br />
+        {this.createCrudBtn()}
+        <Link to="/">
+          <button type="button">취소</button>
+        </Link>
+      </>
+    );
+  }
+}
+
+export default InputForm;
+
+==========================================================
+
+15. 다음과 같이 실행 확인함
+
+C:\ReactSpringBoot\frontendreact>npm start
+
+또는 
+
+C:\ReactSpringBoot\frontendreact>yarn start
+
+==========================================================
+
+16. 크롬 웹브라우저 실행 - http://localhost:3000/
+   1) 게시글 등록 - 최근 게시글 보기
+   2) 최근 게시글 수정 - 최근 게시글 보기
+   3) 최근 게시글 삭제 - 최근 게시글 보기
+   4) 게시글 등록 - 최근 게시글 보기
+
+==========================================================
+
+17. OracleDB sqlplus 활용 springboot_crud 테이블과 데이터 등록 정보를 확인합니다.
+   SQL> select * from tab;
+   SQL> select * from springboot_crud;
+
+==========================================================
