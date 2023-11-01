@@ -1,0 +1,3 @@
+// 3단계 : AOS CSS 적용(예제에서는 css 폴더 생성 후에
+//         AOS 공식 홈페이지 배포 aos.css 파일을 넣어주었음)
+// import "./css/aos.css";

@@ -1,0 +1,4 @@
+// 4단계 : useEffect 함수 활용 AOS 초기화 처리
+// useEffect(() => {
+//   AOS.init();
+// })
